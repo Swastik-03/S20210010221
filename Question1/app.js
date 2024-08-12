@@ -1,13 +1,16 @@
 const express = require('express');
 const axios = require('axios');
-
+const cors = require('cors')
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 
 let accessToken = '';
 let tokenExpiresIn = 0;
 
+
 let allProductsCache = []; // Cache to store products with their IDs
+
+app.use(cors());
 
 app.use(async (req, res, next) => {
     await ensureToken(); // Ensure token is valid for each request
